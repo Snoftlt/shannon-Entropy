@@ -1,4 +1,5 @@
 import copy
+import math
 def sigma(firstArr):
     sigma = []
     for j in range(len(firstArr[0])):
@@ -7,7 +8,6 @@ def sigma(firstArr):
             sigma[j] += firstArr[i][j]
     return sigma
 def normalize(firstArr, normalizedArr):
-    normalizedArr = copy.deepcopy(firstArr)
     sigmaArr = sigma(firstArr)
     for j in range(len(normalizedArr[0])):
         for i in range(len(normalizedArr)):
@@ -47,6 +47,7 @@ with open(path, "r") as f:
     for i in f:
         firstArr.append(i.replace(",", " ").split())
     floatArr(firstArr)
+normalizedArr = copy.deepcopy(firstArr)
 normalize(firstArr, normalizedArr)
 s = SE(normalizedArr)
 d = dj(s)
