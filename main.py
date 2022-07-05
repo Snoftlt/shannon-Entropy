@@ -8,20 +8,19 @@ def sigma(firstArr):
     return sigma
 def normalize(firstArr, normalizedArr):
     normalizedArr = copy.deepcopy(firstArr)
-    sigma = sigma(firstArr)
+    sigmaArr = sigma(firstArr)
     for j in range(len(normalizedArr[0])):
         for i in range(len(normalizedArr)):
-            normalizedArr[i][j] = normalizedArr[i][j]/sigma[j]
+            normalizedArr[i][j] = normalizedArr[i][j]/sigmaArr[j]
 def SE(normalizedArr):
-    SE = []
+    se = [0 for j in range(len(normalizedArr[0]))]
     for j in range(len(normalizedArr[0])):
-        SE.append(0)
         h2 = 0
         h1 = (-1/math.log(len(normalizedArr)))
         for i in range(len(normalizedArr)):
             h2 += (normalizedArr[i][j]*math.log(normalizedArr[i][j]))
-        SE[j] = h1*h2
-    return SE
+        se[j] = h1*h2
+    return se
 def dj(SE):
     d = [(1-SE[j]) for j in range(len(SE))]
     return d
@@ -43,6 +42,7 @@ def floatArr(firstArr):
             firstArr[i][j] = float(firstArr[i][j])
 path = input()
 firstArr = []
+normalizedArr =[]
 with open(path, "r") as f:
     for i in f:
         firstArr.append(i.replace(",", " ").split())
